@@ -3,7 +3,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faMagnifyingGlass } from "@fortawesome/free-solid-svg-icons";
 import { faUser } from "@fortawesome/free-solid-svg-icons";
 
-export function navBar() {
+const Header =() => {
     return (
         <div className="bg-transparent text-red-600 flex flex-row justify-between items-center p-0 absolute w-full h-12">
             <div className=""></div>
@@ -24,4 +24,5 @@ export function navBar() {
                 </div>
         </div>
     );
-}
+};
+export default Header;

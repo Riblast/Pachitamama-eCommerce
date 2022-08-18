@@ -1,16 +1,17 @@
 
+import React from 'react';
 import './App.css';
-import { navBar } from './components/navBar.js';
+import Header from "./components/Header"
 
-function App() {
-  return (
-    <div className="App">
-      <main className='bg-background w-full h-full bg-center bg- fixed'>
-        {navBar()}
-      </main>
 
-    </div>
-  );
+class App extends React.Component {
+  render(){
+    return(
+      <div className='bg-background h-full w-full fixed'>
+        <Header/>
+      </div>
+    )
+  }
+
 }
-
 export default App;
