@@ -1,14 +1,16 @@
 
 import React from 'react';
 import './App.css';
-import Header from "./components/Header"
+import NavBar from "./components/NavBar"
+import ItemListContainer from './components/ItemListContainer';
 
 
 class App extends React.Component {
   render(){
     return(
-      <div className='bg-background h-full w-full fixed'>
-        <Header/>
+      <div className='bg-background h-screen w-screen'>
+        <NavBar/>
+        <ItemListContainer greeting={"Buenos días"}/>
       </div>
     )
   }

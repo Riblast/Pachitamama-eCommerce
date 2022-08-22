@@ -1,12 +1,12 @@
 import "../index.css"
+import CartWidget from "./CartWidget";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faMagnifyingGlass } from "@fortawesome/free-solid-svg-icons";
 import { faUser } from "@fortawesome/free-solid-svg-icons";
 
-const Header =() => {
+const NavBar = () => {
     return (
-        <div className="bg-transparent text-red-600 flex flex-row justify-between items-center p-0 absolute w-full h-12">
-            <div className=""></div>
+        <div className="bg-transparent text-red-600 flex flex-row justify-between items-center p-0 w-full h-12">
             <div className="flex justify-between flex-1">
                 <h3 className="font-poppins font-medium text-2xl text-white leading-9 mx-3">Pachitamama</h3>
             </div>
@@ -20,9 +20,9 @@ const Header =() => {
             <div className="flex flex-1 justify-end gap-3 mx-3">
                 <FontAwesomeIcon className="w-6 h-6 text-white" icon={faMagnifyingGlass} />
                 <FontAwesomeIcon className="w-6 h-6 text-white" icon={faUser} />
-                <svg className="w-7 h-7 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h7" /></svg>
-                </div>
+                <CartWidget />
+            </div>
         </div>
-    );
+    )
 };
-export default Header;
+export default NavBar;
