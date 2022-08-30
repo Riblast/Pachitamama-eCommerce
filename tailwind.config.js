@@ -9,7 +9,7 @@ module.exports = {
         'poppins': ['Poppins', 'sans-serif'] 
       },
       backgroundImage: {
-        'background': "url('/src/assets/images/background.jpg')",
+        'background': "url('/src/assets/images/background.PNG')",
       },
     },
   },
