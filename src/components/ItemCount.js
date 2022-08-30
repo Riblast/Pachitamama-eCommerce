@@ -1,22 +1,27 @@
 import { useState } from "react";
 import "../index.css"
 
-const ItemCount = () => {
+const ItemCount = ({stock, initial = 1, onAdd}) => {
 
-    let [counter, setCounter] = useState(0);
+    let [counter, setCounter] = useState(initial);
     const handlerCounterUp = () =>{
-        setCounter(++counter)
+        if(counter < stock){
+            setCounter(++counter)
+        }
     }
     const handlerCounterDown = () =>{
-        if(counter > 0){
+        if(counter > 1){
             setCounter(--counter)
         }
     }
     return (
-        <div className="flex">
-            <button onClick={handlerCounterDown}>- </button>
-            <p>{counter}</p>
-            <button onClick={handlerCounterUp}> +</button>
+        <div>
+            <div className="flex justify-end">
+                <button onClick={handlerCounterDown}>- </button>
+                <p>{counter}</p>
+                <button onClick={handlerCounterUp}> +</button>
+            </div>
+            <button className="w-full border border-black" onClick={() => {onAdd(counter)}} disabled={stock === 0 ? true : null}>Agregar al carrito</button>
         </div>
     )
 }

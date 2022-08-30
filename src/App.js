@@ -7,7 +7,7 @@ import ItemListContainer from './components/ItemListContainer';
 
 
 class App extends React.Component {
-  render(){
+  render(){ 
     return(
       <div>
         <div className='bg-background bg-cover h-screen w-screen' id='Home'>
