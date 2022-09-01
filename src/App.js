@@ -10,16 +10,12 @@ class App extends React.Component {
   render(){ 
     return(
       <div>
-        <div className='bg-background bg-cover h-screen w-screen' id='Home'>
+        <div className='bg-background bg-fixed bg-cover' id='Home'>
           <NavBar/>
           <ItemListContainer/>
         </div>
-        <div id='Menu'>
-        </div>
-        <div id='AboutUs'></div>
       </div>
     )
   }
-
 }
 export default App;
