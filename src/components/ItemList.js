@@ -1,5 +1,6 @@
-import React from "react";
-import Item from "./Item";
+import PropTypes from 'prop-types'
+import React from 'react'
+import Item from './Item'
 
 const ItemList = ({items = []}) => {
     return (
@@ -11,5 +12,9 @@ const ItemList = ({items = []}) => {
 
 }
 
+ItemList.propTypes = {
+    items: PropTypes.array
+}
 
-export default ItemList;
+
+export default ItemList

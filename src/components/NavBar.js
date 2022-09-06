@@ -1,8 +1,9 @@
-import "../index.css"
-import CartWidget from "./CartWidget";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faMagnifyingGlass } from "@fortawesome/free-solid-svg-icons";
-import { faUser } from "@fortawesome/free-solid-svg-icons";
+import React from 'react'
+import '../index.css'
+import CartWidget from './CartWidget'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faMagnifyingGlass } from '@fortawesome/free-solid-svg-icons'
+import { faUser } from '@fortawesome/free-solid-svg-icons'
 
 const NavBar = () => {
     return (
@@ -20,9 +21,8 @@ const NavBar = () => {
                 <FontAwesomeIcon className="w-6 h-6 text-black" icon={faMagnifyingGlass} />
                 <FontAwesomeIcon className="w-6 h-6 text-black" icon={faUser} />
                 <div className="flex items-center"><CartWidget /><h3 className="items-center font-poppins font-medium text-lg text-black mx-3">0</h3></div>
-
             </div>
         </div>
     )
-};
-export default NavBar;
+}
+export default NavBar

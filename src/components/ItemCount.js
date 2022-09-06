@@ -1,8 +1,9 @@
-import { useState } from "react";
+import PropTypes from 'prop-types'
+import React, { useState } from 'react'
 
 const ItemCount = ({stock, initial = 1, onAdd}) => {
 
-    let [counter, setCounter] = useState(initial);
+    let [counter, setCounter] = useState(initial)
     const handlerCounterUp = () =>{
         if(counter < stock){
             setCounter(++counter)
@@ -24,4 +25,10 @@ const ItemCount = ({stock, initial = 1, onAdd}) => {
         </div>
     )
 }
-export default ItemCount;
+
+ItemCount.propTypes = {
+    initial: PropTypes.number,
+    onAdd: PropTypes.func,
+    stock: PropTypes.number
+}
+export default ItemCount
