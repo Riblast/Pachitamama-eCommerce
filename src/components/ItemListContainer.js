@@ -3,7 +3,6 @@ import ItemList from './ItemList'
 
 const ItemListContainer = () => {
     const [items, setItems] = useState([])
-    
     useEffect(() => {
         const fetchItems = async () => {
             const response = await fetch(
@@ -25,7 +24,6 @@ const ItemListContainer = () => {
         }
         fetchItems()
     }, [])
-
     return(
         <div className='flex justify-center'>
             <ItemList items={items}/>

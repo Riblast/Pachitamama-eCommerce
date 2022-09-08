@@ -4,6 +4,7 @@ import CartWidget from './CartWidget'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faMagnifyingGlass } from '@fortawesome/free-solid-svg-icons'
 import { faUser } from '@fortawesome/free-solid-svg-icons'
+import { NavLink } from 'react-router-dom'
 
 const NavBar = () => {
     return (
@@ -12,15 +13,15 @@ const NavBar = () => {
             </div>
             <div className="inline-block">
                 <ul className="flex">
-                    <li className="font-poppins font-medium text-2xl text-black mx-3 leading-9"><a href="#">Home</a></li>
-                    <li className="font-poppins font-medium text-2xl text-black mx-3 leading-9"><a href="#">Menú</a></li>
-                    <li className="font-poppins font-medium text-2xl text-black flex-shrink-0 mx-3 leading-9"><a href="#">About Us</a></li>
+                    <li className="font-poppins font-medium text-2xl text-black mx-3 leading-9"><NavLink to="/">Home</NavLink></li>
+                    <li className="font-poppins font-medium text-2xl text-black mx-3 leading-9"><NavLink to="/categoria">Menú</NavLink></li>
+                    <li className="font-poppins font-medium text-2xl text-black flex-shrink-0 mx-3 leading-9"><NavLink to="/AboutUs">About Us</NavLink></li>
                 </ul>
             </div>
             <div className="flex flex-1 justify-end gap-3 mx-3 items-center">
                 <FontAwesomeIcon className="w-6 h-6 text-black" icon={faMagnifyingGlass} />
                 <FontAwesomeIcon className="w-6 h-6 text-black" icon={faUser} />
-                <div className="flex items-center"><CartWidget /><h3 className="items-center font-poppins font-medium text-lg text-black mx-3">0</h3></div>
+                <NavLink to="/carrito" className="flex items-center"><CartWidget /><h3 className="items-center font-poppins font-medium text-lg text-black mx-3">0</h3></NavLink>
             </div>
         </div>
     )

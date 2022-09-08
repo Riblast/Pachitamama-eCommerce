@@ -12,15 +12,14 @@ const ItemDetail = ({ data }) => {
                         <div className='flex flex-col m-auto h-full pl-1 items-center text-center justify-between'>
                             <h3 className="text-sm m-1 font-medium mb-2">{data.itemName}</h3>
                             <ul className=''>
-                                <li><p className='text-sm text-left'>-Chocolate amargo y naranja</p></li>
-                                <li><p className='text-sm text-left mt-2 mb-2'>-Chocolate blanco y arandanos</p></li>
-                                <li><p className='text-sm text-left'>-Mango, papaya y banana</p></li>
+                                <li><p className='text-sm text-left'>Chocolate amargo y naranja</p></li>
+                                <li><p className='text-sm text-left mt-2 mb-2'>Chocolate blanco y arandanos</p></li>
+                                <li><p className='text-sm text-left'>Mango, papaya y banana</p></li>
                             </ul>
                             <h3 className="h-fit">Precio: ${data.itemPrice}</h3>
                             <button className='p-2 border rounded-md bg-blue-500'>Agregar al Carrito</button>
                         </div>
                     </div>
-                    
                 </div>
             </div>
         </div>
@@ -30,8 +29,14 @@ const ItemDetail = ({ data }) => {
 ItemDetail.propTypes = {
     data: PropTypes.shape({
         itemName: PropTypes.any,
-        itemPrice: PropTypes.any
+        itemPrice: PropTypes.any,
+        variation1: PropTypes.any,
+        variation2: PropTypes.any,
+        variation3: PropTypes.any,
+        variations: PropTypes.any
     })
 }
+
+
 
 export default ItemDetail
