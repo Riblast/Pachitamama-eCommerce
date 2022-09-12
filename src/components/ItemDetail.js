@@ -1,15 +1,24 @@
 import PropTypes from 'prop-types'
-import React from 'react'
+import React, {useState} from 'react'
+import { Link } from 'react-router-dom'
 import hamburguesas from '../assets/images/hamburguesas.PNG'
+import ItemCount from './ItemCount'
 
 const ItemDetail = ({ data }) => {
+    const [goToCart, setGoToCart] = useState(false)
+
+    const onAdd = (quantityToAdd) => {
+        const [quantity, setQuantity] = useState(0)
+        setGoToCart(true)
+        setQuantity(quantityToAdd)
+    }
     return (
         <div className='items-center text-center w-screen h-screen'>
-            <div className='w-2/3 text-center inline-block'>
-                <div className="flex m-4 bg-white p-3 rounded h-56">
-                    <img className="" src={hamburguesas} alt={data.itemName}></img>
+            <div className='w-3/4 text-center inline-block'>
+                <div className="flex m-4 bg-white p-3 rounded h-3/4">
+                    <img className="w-2/5" src={hamburguesas} alt={data.itemName}></img>
                     <div className='flex items-center justify-center w-full h-full'>
-                        <div className='flex flex-col m-auto h-full pl-1 items-center text-center justify-between'>
+                        <div className='flex flex-col m-auto pl-1 items-center text-center justify-between'>
                             <h3 className="text-sm m-1 font-medium mb-2">{data.itemName}</h3>
                             <ul className=''>
                                 <li><p className='text-sm text-left'>Chocolate amargo y naranja</p></li>
@@ -17,7 +26,10 @@ const ItemDetail = ({ data }) => {
                                 <li><p className='text-sm text-left'>Mango, papaya y banana</p></li>
                             </ul>
                             <h3 className="h-fit">Precio: ${data.itemPrice}</h3>
-                            <button className='p-2 border rounded-md bg-blue-500'>Agregar al Carrito</button>
+                            {goToCart ? <div className=''>
+                                <Link to={'/carrito'} className='p-2 border rounded-md bg-blue-500 h-10'>Terminar Compra</Link>
+                                <button onClick={() => {setGoToCart(false)}} className='p-2 border rounded-md bg-blue-500 w-auto h-10'>Atras</button>
+                            </div>  : <ItemCount stock={10} onAdd={onAdd}/>}
                         </div>
                     </div>
                 </div>

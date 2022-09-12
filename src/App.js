@@ -20,9 +20,9 @@ class App extends React.Component {
                         <NavBar/>
                         <Routes>
                             <Route path='/' element={<ItemListContainer/>}/>
-                            <Route path='/categoria' element={<ItemListContainer/>}/>
+                            <Route path='/category' element={<ItemListContainer/>}/>
                             <Route path='/carrito' element={<Cart/>}/>
-                            <Route path='/detalle/:id' element={<ItemDetailContainer/>}/>
+                            <Route path='/item/:id' element={<ItemDetailContainer/>}/>
                             <Route path='/AboutUs' element={<AboutUs/>}/>
                         </Routes>
                     </Router>

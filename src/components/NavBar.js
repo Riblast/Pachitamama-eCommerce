@@ -14,7 +14,7 @@ const NavBar = () => {
             <div className="inline-block">
                 <ul className="flex">
                     <li className="font-poppins font-medium text-2xl text-black mx-3 leading-9"><NavLink to="/">Home</NavLink></li>
-                    <li className="font-poppins font-medium text-2xl text-black mx-3 leading-9"><NavLink to="/categoria">Menú</NavLink></li>
+                    <li className="font-poppins font-medium text-2xl text-black mx-3 leading-9"><NavLink to="/category">Menú</NavLink></li>
                     <li className="font-poppins font-medium text-2xl text-black flex-shrink-0 mx-3 leading-9"><NavLink to="/AboutUs">About Us</NavLink></li>
                 </ul>
             </div>

@@ -16,12 +16,12 @@ const ItemCount = ({stock, initial = 1, onAdd}) => {
     }
     return (
         <div>
-            <div className="flex justify-end">
-                <button onClick={handlerCounterDown}>- </button>
-                <p>{counter}</p>
-                <button onClick={handlerCounterUp}> +</button>
+            <div className="flex justify-between h-6">
+                <button className='flex p-2 border rounded-md bg-blue-500 h-auto w-10 items-center justify-center ' onClick={handlerCounterDown}>-</button>
+                <p className='flex items-center'>{counter}</p>
+                <button className='flex p-1 border rounded-md bg-blue-500 h-auto w-10 items-center justify-center' onClick={handlerCounterUp}>+</button>
             </div>
-            <button className="w-full border border-black" onClick={() => {onAdd(counter)}} disabled={stock === 0 ? true : null}>Agregar al carrito</button>
+            <button className="p-1 border rounded-md bg-blue-500 h-10" onClick={() => {onAdd(counter)}} disabled={stock === 0 ? true : null}>Agregar al carrito</button>
         </div>
     )
 }
