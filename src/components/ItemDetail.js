@@ -3,14 +3,17 @@ import React, {useState} from 'react'
 import { Link } from 'react-router-dom'
 import hamburguesas from '../assets/images/hamburguesas.PNG'
 import ItemCount from './ItemCount'
+import { useCartContext } from '../CartContext'
+
 
 const ItemDetail = ({ data }) => {
     const [goToCart, setGoToCart] = useState(false)
 
-    const onAdd = (quantityToAdd) => {
-        const [quantity, setQuantity] = useState(0)
+    const {addItem} = useCartContext()
+
+    const onAdd = (quantity) => {
         setGoToCart(true)
-        setQuantity(quantityToAdd)
+        addItem(data, quantity)
     }
     return (
         <div className='items-center text-center w-screen h-screen'>
@@ -41,13 +44,13 @@ const ItemDetail = ({ data }) => {
 ItemDetail.propTypes = {
     data: PropTypes.shape({
         itemName: PropTypes.any,
-        itemPrice: PropTypes.any,
-        variation1: PropTypes.any,
-        variation2: PropTypes.any,
-        variation3: PropTypes.any,
-        variations: PropTypes.any
+        itemPrice: PropTypes.any
     })
 }
+
+
+
+
 
 
 

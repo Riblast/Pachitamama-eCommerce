@@ -18,7 +18,12 @@ const Item = ({ itemData }) =>{
 }
 
 Item.propTypes = {
-    itemData: PropTypes.array
+    itemData: PropTypes.shape({
+        id: PropTypes.any,
+        itemName: PropTypes.any,
+        itemPrice: PropTypes.any
+    })
 }
+
 
 export default Item

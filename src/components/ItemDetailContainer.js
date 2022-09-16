@@ -22,7 +22,6 @@ const ItemDetailContainer = () =>{
         })
         getData.then(res => setData(res.find(item => item.id === parseInt(id))))
     }, [])
-    console.log(data)
     return(
         <ItemDetail data={data}/>
     )
