@@ -16,8 +16,8 @@ class App extends React.Component {
             <div>
                 <div className='bg-background bg-fixed bg-cover' id='Home'>
                     <Router>
-                        <NavBar/>
                         <CartProvider>
+                            <NavBar/>
                             <Routes>
                                 <Route path='/' element={<ItemListContainer/>}/>
                                 <Route path='/category' element={<ItemListContainer/>}/>

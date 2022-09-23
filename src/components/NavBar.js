@@ -21,7 +21,7 @@ const NavBar = () => {
             <div className="flex flex-1 justify-end gap-3 mx-3 items-center">
                 <FontAwesomeIcon className="w-6 h-6 text-black" icon={faMagnifyingGlass} />
                 <FontAwesomeIcon className="w-6 h-6 text-black" icon={faUser} />
-                <NavLink to="/carrito" className="flex items-center"><CartWidget /><h3 className="items-center font-poppins font-medium text-lg text-black mx-3">0</h3></NavLink>
+                <NavLink to="/carrito" className="flex items-center"><CartWidget /></NavLink>
             </div>
         </div>
     )

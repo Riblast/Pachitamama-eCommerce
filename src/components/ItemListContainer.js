@@ -18,7 +18,7 @@ const ItemListContainer = () => {
             const sleep = (ms) =>{
                 return new Promise((resolve) => setTimeout(resolve, ms))
             }
-            await sleep(2000)
+            await sleep(0)
             const data = await response.json()
             setItems(data)
         }
