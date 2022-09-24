@@ -8,10 +8,10 @@ const ItemCart = ({ item }) => {
         <div className='my-2 px-6 flex justify-center'>
             <div className="flex items-center justify-items-start justify-between w-1/2">
                 <div>
-                    <p className="font-bold">{item.itemName}</p>
+                    <p className="font-bold">{item.name}</p>
                     <p>Cantidad: {item.quantity}</p>
-                    <p>Precio: $U{item.itemPrice}</p>
-                    <p>Subtotal: $U{item.quantity * item.itemPrice}</p>
+                    <p>Precio: $U{item.price}</p>
+                    <p>Subtotal: $U{item.quantity * item.price}</p>
                 </div>
                 <button className="p-2 border rounded-md bg-blue-500 w-auto h-10" onClick={() => removeItem(item.id)}>Eliminar</button>
             </div>
@@ -22,12 +22,13 @@ const ItemCart = ({ item }) => {
 ItemCart.propTypes = {
     item: PropTypes.shape({
         id: PropTypes.any,
-        img: PropTypes.any,
-        itemName: PropTypes.any,
-        itemPrice: PropTypes.number,
+        name: PropTypes.any,
+        price: PropTypes.number,
         quantity: PropTypes.number
     })
 }
+
+
 
 
 

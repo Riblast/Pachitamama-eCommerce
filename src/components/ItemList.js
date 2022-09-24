@@ -4,7 +4,7 @@ import Item from './Item'
 
 const ItemList = ({items = []}) => {
     return (
-        <div className="grid grid-cols-2 justify-between sm:grid-cols-3">
+        <div className="grid grid-cols-2 justify-between sm:grid-cols-3 min-h-full items-center">
             {items.map((item) => (<Item key={item.id} itemData={item} />
             ))}
         </div>

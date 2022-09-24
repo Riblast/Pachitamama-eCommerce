@@ -19,16 +19,16 @@ const ItemDetail = ({ data }) => {
         <div className='items-center text-center w-screen h-screen'>
             <div className='w-3/4 text-center inline-block'>
                 <div className="flex m-4 bg-white p-3 rounded h-3/4">
-                    <img className="w-2/5" src={hamburguesas} alt={data.itemName}></img>
+                    <img className="w-2/5" src={hamburguesas} alt={data.img}></img>
                     <div className='flex items-center justify-center w-full h-full'>
                         <div className='flex flex-col m-auto pl-1 items-center text-center justify-between'>
-                            <h3 className="text-sm m-1 font-medium mb-2">{data.itemName}</h3>
+                            <h3 className="text-sm m-1 font-medium mb-2">{data.name}</h3>
                             <ul className=''>
                                 <li><p className='text-sm text-left'>Chocolate amargo y naranja</p></li>
                                 <li><p className='text-sm text-left mt-2 mb-2'>Chocolate blanco y arandanos</p></li>
                                 <li><p className='text-sm text-left'>Mango, papaya y banana</p></li>
                             </ul>
-                            <h3 className="h-fit">Precio: ${data.itemPrice}</h3>
+                            <h3 className="h-fit">Precio: ${data.price}</h3>
                             {goToCart ? <div className=''>
                                 <Link to={'/carrito'} className='p-2 border rounded-md bg-blue-500 h-10'>Terminar Compra</Link>
                                 <button onClick={() => {setGoToCart(false)}} className='p-2 border rounded-md bg-blue-500 w-auto h-10'>Atras</button>
@@ -43,10 +43,13 @@ const ItemDetail = ({ data }) => {
 
 ItemDetail.propTypes = {
     data: PropTypes.shape({
-        itemName: PropTypes.any,
-        itemPrice: PropTypes.any
+        img: PropTypes.any,
+        name: PropTypes.any,
+        price: PropTypes.any
     })
 }
+
+
 
 
 

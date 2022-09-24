@@ -1,32 +1,35 @@
 import React, { useState, useEffect } from 'react'
 import ItemList from './ItemList'
+import { getFirestore, collection, getDocs, query, where } from 'firebase/firestore'
+import { Link, useParams } from 'react-router-dom'
 
 const ItemListContainer = () => {
     const [items, setItems] = useState([])
+
+    const { categoriaId } = useParams()
     useEffect(() => {
-        const fetchItems = async () => {
-            const response = await fetch(
-                'https://api.jsonbin.io/v3/b/6310e8f35c146d63ca89a884',
-                {
-                    headers: {
-                        'X-Master-Key':
-                            '$2b$10$NIzH8KUS7.zPD94h96DpIevwUPLU6IyfJ.FBJlfIR1zHJAUbZF/hW',
-                        'X-BIN-META': false
-                    },
-                }
-            )
-            const sleep = (ms) =>{
-                return new Promise((resolve) => setTimeout(resolve, ms))
-            }
-            await sleep(0)
-            const data = await response.json()
-            setItems(data)
+        const querydb = getFirestore()
+        const queryCollection = collection(querydb, 'productos')
+        
+        if(categoriaId){
+            const queryFilter = query(queryCollection, where('category', '==', categoriaId))
+            getDocs(queryFilter)
+                .then(res => setItems(res.docs.map(product => ( {id: product.id, ...product.data() }))))
         }
-        fetchItems()
-    }, [])
+        else{
+            getDocs(queryCollection)
+                .then(res => setItems(res.docs.map(product => ( {id: product.id, ...product.data() }))))
+        }    
+    }, [categoriaId])
     return(
-        <div className='flex justify-center'>
-            <ItemList items={items}/>
+        <div className='min-h-screen min-w-full'>
+            <div className='flex justify-center'>
+                <Link className='mx-2 mt-2 p-2 border rounded-md bg-blue-500 h-10' to="/menu/dulce">Dulces</Link>
+                <Link className='mx-2 mt-2 p-2 border rounded-md bg-blue-500 h-10' to="/menu/salado">Salados</Link>
+            </div>
+            <div className='flex justify-center'>
+                <ItemList items={items}/>
+            </div>
         </div>
     )
 }
