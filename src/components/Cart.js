@@ -1,9 +1,27 @@
 import React from 'react'
+import { getFirestore, collection, addDoc } from 'firebase/firestore'
 import { Link } from 'react-router-dom'
 import { useCartContext } from '../CartContext'
 import ItemCart from './ItemCart'
 const Cart = () => {
     const { cart, totalPrice } = useCartContext()
+
+    const order = {
+        buyer: {
+            name: 'Franco',
+            email: 'franco@gmail.com',
+            phone: '12345678'
+        },
+        items: cart.map(product =>({id: product.id, title: product.name, price: product.price, quantity: product.quantity})),
+        total: totalPrice()
+    }
+
+    const handleOnClick = () =>{
+        const db = getFirestore()
+        const ordersCollection = collection(db, 'orders')
+        addDoc(ordersCollection, order)
+            .then(({ id }) => alert('Compra finalizada su id es: ' + id))
+    }
 
     if(cart.length === 0){
         return(
@@ -25,6 +43,7 @@ const Cart = () => {
                         cart.map(item => <ItemCart key={item.id} item={item}/>)
                     }
                     <p className='flex justify-end px-4'>Total: ${totalPrice()}</p>
+                    <button onClick={handleOnClick}>Finalizar compra</button>
                 </div>              
             </div>
         </div>
