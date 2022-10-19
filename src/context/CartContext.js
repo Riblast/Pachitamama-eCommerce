@@ -1,12 +1,12 @@
 import PropTypes from 'prop-types'
-import React, { useState, useContext } from 'react'
-const CartContext = React.createContext([])
+import React, { useState, createContext, useContext } from 'react'
+const CartContext = createContext([])
 
 export const useCartContext = () => useContext(CartContext)
 
 
 const CartProvider = ({ children}) => {
-    const [cart, setCart] = useState([])
+    const [cart, setCart] = useState(JSON.parse(localStorage.getItem('cart')) || [])
 
     const addItem = (item, quantity) =>{
         if(isInCart(item.id)){
@@ -17,6 +17,10 @@ const CartProvider = ({ children}) => {
         else{
             setCart([...cart, { ...item, quantity }])
         }
+    }
+
+    const saveCart = () =>{
+        localStorage.setItem('cart', JSON.stringify(cart))
     }
 
     const clearCart = () =>{
@@ -39,7 +43,7 @@ const CartProvider = ({ children}) => {
         return cart.reduce((prev, act) => prev + act.quantity, 0)
     }
     return (
-        <CartContext.Provider value={{addItem, clearCart, isInCart, removeItem, totalPrice, totalItems, cart}}>
+        <CartContext.Provider value={{addItem, clearCart, isInCart, removeItem, totalPrice, totalItems, saveCart, cart}}>
             {children}
         </CartContext.Provider>
     )

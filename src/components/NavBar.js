@@ -2,7 +2,6 @@ import React from 'react'
 import '../index.css'
 import CartWidget from './CartWidget'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faMagnifyingGlass } from '@fortawesome/free-solid-svg-icons'
 import { faUser } from '@fortawesome/free-solid-svg-icons'
 import { NavLink } from 'react-router-dom'
 
@@ -19,8 +18,7 @@ const NavBar = () => {
                 </ul>
             </div>
             <div className="flex flex-1 justify-end gap-3 mx-3 items-center">
-                <FontAwesomeIcon className="w-6 h-6 text-black" icon={faMagnifyingGlass} />
-                <FontAwesomeIcon className="w-6 h-6 text-black" icon={faUser} />
+                <NavLink to="/profile"><FontAwesomeIcon className="w-6 h-6 text-black" icon={faUser} /></NavLink>
                 <NavLink to="/carrito" className="flex items-center"><CartWidget /></NavLink>
             </div>
         </div>
