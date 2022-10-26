@@ -1,43 +1,26 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import { getFirestore, collection, addDoc } from 'firebase/firestore'
 import { auth } from '../firebase/config'
 import { Link, useNavigate } from 'react-router-dom'
 import { useCartContext } from '../context/CartContext'
 import ItemCart from './ItemCart'
 import { toast } from 'react-toastify'
+import Modal from './Modal'
 const Cart = () => {
     const { cart, totalPrice, saveCart, clearCart } = useCartContext()
+    const [modalState, setModalState] = useState(false)
+    const [data, setData] = useState({
+        nombre: '',
+        apellido: '',
+        telefono: ''
+    })
 
     const user = auth.currentUser
 
     const navigate = useNavigate()
     const handleOnClick = () =>{
         if(user){
-            const order = {
-                buyer: {
-                    name: user.displayName,
-                    email: user.email
-                },
-                items: cart.map(product =>({id: product.id, title: product.name, price: product.price, quantity: product.quantity})),
-                total: totalPrice()
-            }
-
-            const db = getFirestore()
-            const ordersCollection = collection(db, 'orders')
-            addDoc(ordersCollection, order)
-                .then(({ id }) => toast.success('Compra finalizada su id es: ' + id), {
-                    position: 'top-right',
-                    autoClose: 4000,
-                    hideProgressBar: false,
-                    closeOnClick: false,
-                    pauseOnHover: true,
-                    draggable: false,
-                    progress: undefined,
-                    theme: 'colored',
-                }
-                )
-            clearCart()
-            navigate('/')
+            setModalState(!modalState)
         }
         if(!user){
             toast.error('Inicie session para finalizar la compra', {
@@ -52,6 +35,44 @@ const Cart = () => {
             })
             navigate('/Login')
         }
+    }
+
+    const handleOnChange = (e) =>{
+        setData({
+            ...data,
+            [e.target.name] : e.target.value
+        })
+    }
+
+    const handleOnSubmit = (e) =>{
+        e.preventDefault()
+        const order = {
+            buyer: {
+                name: data.nombre,
+                apellido: data.apellido,
+                email: user.email,
+                telefono: data.telefono
+            },
+            items: cart.map(product =>({id: product.id, title: product.name, price: product.price, quantity: product.quantity})),
+            total: totalPrice()
+        }
+
+        const db = getFirestore()
+        const ordersCollection = collection(db, 'orders')
+        addDoc(ordersCollection, order)
+            .then(({ id }) => toast.success('Compra finalizada su id es: ' + id), {
+                position: 'top-right',
+                autoClose: 4000,
+                hideProgressBar: false,
+                closeOnClick: false,
+                pauseOnHover: true,
+                draggable: false,
+                progress: undefined,
+                theme: 'colored',
+            }
+            )
+        clearCart()
+        navigate('/')
     }
 
     useEffect(() => {
@@ -80,6 +101,25 @@ const Cart = () => {
                 <div className='flex w-full justify-end my-2 px-6'><p className='text-lg font-semibold'>Total: ${totalPrice()}</p></div>
                 <div className='flex w-full justify-end my-2 px-6'><button className='bg-blue-500 text-white shadow-md rounded py-2 px-4 active:bg-blue-700' onClick={handleOnClick}>Finalizar compra</button></div>           
             </div>
+            <Modal state={modalState} setState={setModalState}>
+                <form onSubmit={handleOnSubmit} className="w-full">
+                    <label className='flex justify-center'>
+                        <input className='border border-blue-400 rounded' type="text" name="nombre" placeholder='Nombre' required onChange={handleOnChange} />
+                    </label>
+
+                    <label className='flex justify-center'>
+                        <input className='border border-blue-400 rounded m-2' type="text" name="apellido" placeholder='Apellido' required onChange={handleOnChange} />
+                    </label>
+
+                    <label className='flex justify-center'>
+                        <input className='border border-blue-400 rounded' type="number" name="telefono" placeholder='Telefono' required onChange={handleOnChange} />
+                    </label>
+
+                    <div className='flex justify-center'>
+                        <input className='bg-blue-500 text-white shadow-md rounded py-2 px-4 active:bg-blue-700 m-3' type="submit" value="Enviar" />
+                    </div>
+                </form>
+            </Modal>
         </div>
     )
 }
